@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_autodoka" default="compile.module.autodoka">
+  <dirname property="module.autodoka.basedir" file="${ant.file.module_autodoka}"/>
+  
+  <property name="module.jdk.home.autodoka" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.autodoka" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.autodoka" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.autodoka" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="autodoka.output.dir" value="${module.autodoka.basedir}/out/production/AutoDoka"/>
+  <property name="autodoka.testoutput.dir" value="${module.autodoka.basedir}/out/test/AutoDoka"/>
+  
+  <path id="autodoka.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="autodoka.module.production.classpath">
+    <path refid="${module.jdk.classpath.autodoka}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  <path id="autodoka.runtime.production.module.classpath">
+    <pathelement location="${autodoka.output.dir}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  <path id="autodoka.module.classpath">
+    <path refid="${module.jdk.classpath.autodoka}"/>
+    <pathelement location="${autodoka.output.dir}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  <path id="autodoka.runtime.module.classpath">
+    <pathelement location="${autodoka.testoutput.dir}"/>
+    <pathelement location="${autodoka.output.dir}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.autodoka">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.autodoka">
+    <patternset refid="excluded.from.module.autodoka"/>
+  </patternset>
+  
+  <path id="autodoka.module.sourcepath">
+    <dirset dir="${module.autodoka.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.autodoka" depends="compile.module.autodoka.production,compile.module.autodoka.tests" description="Compile module AutoDoka"/>
+  
+  <target name="compile.module.autodoka.production" depends="register.custom.compilers" description="Compile module AutoDoka; production classes">
+    <mkdir dir="${autodoka.output.dir}"/>
+    <javac2 destdir="${autodoka.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.autodoka}/javac">
+      <compilerarg line="${compiler.args.autodoka}"/>
+      <bootclasspath refid="autodoka.module.bootclasspath"/>
+      <classpath refid="autodoka.module.production.classpath"/>
+      <src refid="autodoka.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.autodoka"/>
+    </javac2>
+    
+    <copy todir="${autodoka.output.dir}">
+      <fileset dir="${module.autodoka.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.autodoka.tests" depends="register.custom.compilers,compile.module.autodoka.production" description="compile module AutoDoka; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.autodoka" description="cleanup module">
+    <delete dir="${autodoka.output.dir}"/>
+    <delete dir="${autodoka.testoutput.dir}"/>
+  </target>
+</project>

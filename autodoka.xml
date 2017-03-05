@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="autodoka" default="all">
+  
+  
+  <property file="autodoka.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.ear"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.org.apache.poi:poi-ooxml:3.15.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/virtuald/curvesapi/1.04/curvesapi-1.04.jar"/>
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-ooxml-schemas/3.15/poi-ooxml-schemas-3.15.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-ooxml/3.15/poi-ooxml-3.15.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/3.15/poi-3.15.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/stax/stax-api/1.0.1/stax-api-1.0.1.jar"/>
+  </path>
+  
+  <path id="library.org.apache.poi:poi:3.15.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/3.15/poi-3.15.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module AutoDoka -->
+  
+  <dirname property="module.autodoka.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.autodoka" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.autodoka" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.autodoka" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.autodoka" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="autodoka.output.dir" value="${module.autodoka.basedir}/out/production/AutoDoka"/>
+  <property name="autodoka.testoutput.dir" value="${module.autodoka.basedir}/out/test/AutoDoka"/>
+  
+  <path id="autodoka.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="autodoka.module.production.classpath">
+    <path refid="${module.jdk.classpath.autodoka}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  <path id="autodoka.runtime.production.module.classpath">
+    <pathelement location="${autodoka.output.dir}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  <path id="autodoka.module.classpath">
+    <path refid="${module.jdk.classpath.autodoka}"/>
+    <pathelement location="${autodoka.output.dir}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  <path id="autodoka.runtime.module.classpath">
+    <pathelement location="${autodoka.testoutput.dir}"/>
+    <pathelement location="${autodoka.output.dir}"/>
+    <path refid="library.org.apache.poi:poi:3.15.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:3.15.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.autodoka">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.autodoka">
+    <patternset refid="excluded.from.module.autodoka"/>
+  </patternset>
+  
+  <path id="autodoka.module.sourcepath">
+    <dirset dir="${module.autodoka.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.autodoka" depends="compile.module.autodoka.production,compile.module.autodoka.tests" description="Compile module AutoDoka"/>
+  
+  <target name="compile.module.autodoka.production" depends="register.custom.compilers" description="Compile module AutoDoka; production classes">
+    <mkdir dir="${autodoka.output.dir}"/>
+    <javac2 destdir="${autodoka.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.autodoka}/javac">
+      <compilerarg line="${compiler.args.autodoka}"/>
+      <bootclasspath refid="autodoka.module.bootclasspath"/>
+      <classpath refid="autodoka.module.production.classpath"/>
+      <src refid="autodoka.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.autodoka"/>
+    </javac2>
+    
+    <copy todir="${autodoka.output.dir}">
+      <fileset dir="${module.autodoka.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.autodoka.tests" depends="register.custom.compilers,compile.module.autodoka.production" description="compile module AutoDoka; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.autodoka" description="cleanup module">
+    <delete dir="${autodoka.output.dir}"/>
+    <delete dir="${autodoka.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.autodoka" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.autodoka" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
