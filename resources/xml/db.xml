@@ -44787,4 +44787,112 @@
         <phone>79220199159</phone>
         <work>спирит 121.2</work>
     </client>
+    <client>
+        <amount>30305</amount>
+        <auto>прадо 150 е939нт159</auto>
+        <date>15-фев-2017</date>
+        <master>ЗПМ, ЗПЗ, ЗПЛ</master>
+        <name>Алексей</name>
+        <phone>79519367992</phone>
+        <work>х1800,бкд,бшрк,сирена,подкл регистратора,демонтаж</work>
+    </client>
+    <client>
+        <amount>10050</amount>
+        <auto>Астра а758рр159</auto>
+        <date>15-фев-2017</date>
+        <master>ЗПА</master>
+        <name>Павел</name>
+        <phone>79068898374</phone>
+        <work>Зеркало,Камера зад. Вида</work>
+    </client>
+    <client>
+        <amount>1000</amount>
+        <auto>Паджеро </auto>
+        <date>16-фев-2017</date>
+        <master>ЗПМ, ЗПЛ</master>
+        <name>Петр</name>
+        <phone>79027942424</phone>
+        <work>замена симки +настройка А 94</work>
+    </client>
+    <client>
+        <amount>2200</amount>
+        <auto>Прадо Е446ух159</auto>
+        <date>16-фев-2017</date>
+        <master>ЗПМ, ЗПЛ</master>
+        <name>Александр</name>
+        <phone>79027902770</phone>
+        <work>бкд</work>
+    </client>
+    <client>
+        <amount>7400</amount>
+        <auto>Поло в257он159</auto>
+        <date>17-фев-2017</date>
+        <master>ЗПМ, ЗПЛ</master>
+        <name>Вячеслав</name>
+        <phone>79125850050</phone>
+        <work>реализация а/з 3210,чип</work>
+    </client>
+    <client>
+        <amount>3000</amount>
+        <auto>Прадо е895хк159</auto>
+        <date>20-фев-2017</date>
+        <master>ЗПА</master>
+        <name>Роман</name>
+        <phone>79028014966</phone>
+        <work>Уст. Ав.магнитолы</work>
+    </client>
+    <client>
+        <amount>17500</amount>
+        <auto>СХ5 е231от82</auto>
+        <date>22-фев-2017</date>
+        <master>ЗПМ, ЗПЗ, ЗПР, ЗПЛ, ЗПА</master>
+        <name>Вячеслав Геннадьевич</name>
+        <phone>79194416749</phone>
+        <work>просекьюрити  мазда,р4,тон тыл лл5%</work>
+    </client>
+    <client>
+        <amount>15700</amount>
+        <auto>Спортеж е945рх82</auto>
+        <date>27-фев-2017</date>
+        <master>ЗПМ, ЗПЛ</master>
+        <name>Алексей</name>
+        <phone>79125908006</phone>
+        <work>дх50б,сирена</work>
+    </client>
+    <client>
+        <amount>3200</amount>
+        <auto>Гранта е947ет159</auto>
+        <date>28-фев-2017</date>
+        <master>ЗПА</master>
+        <name>Андрей</name>
+        <phone>Нет</phone>
+        <work>Тон.тыл LL05</work>
+    </client>
+    <client>
+        <amount>20200</amount>
+        <auto>СХ-5 к322оо82</auto>
+        <date>28-фев-2017</date>
+        <master>ЗПЗ, ЗПР, ЗПЛ, ЗПА</master>
+        <name>Марина</name>
+        <phone>79824552401</phone>
+        <work>дх50б,сирена,тон тыл лл5%,полоска лоб</work>
+    </client>
+    <client>
+        <amount>137610</amount>
+        <auto>хайлэндер х290вн59</auto>
+        <date>28-фев-2017</date>
+        <master>ЗПМ, ЗПЗ, ЗПР, ЗПЛ, ЗПА</master>
+        <name>Михаил</name>
+        <phone>2932948</phone>
+        <work>5000с,просекьюрити,блокираторы дверей АК,модульуправления АК,перенос сертификации,установка сетки в бампер,бронирование всех стекол кроме лба,бкд,бшрк,спирит1,</work>
+    </client>
+    <client>
+        <amount>15700</amount>
+        <auto>солярис к116ра82</auto>
+        <date>28-фев-2017</date>
+        <master>ЗПЗ, ЗПЛ</master>
+        <name>Денис</name>
+        <phone>79058623253</phone>
+        <work>дх50б,сирена</work>
+    </client>
 </clients>

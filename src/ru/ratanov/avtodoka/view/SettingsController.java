@@ -37,7 +37,7 @@ public class SettingsController {
     private void selectFileForUpdate() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
-                "Файл отчета Excel (*.xlsx)", "(*.xlsx)"
+                "Файлы Excel (*.xlsx)", "*.xlsx"
         );
         fileChooser.getExtensionFilters().add(extensionFilter);
 

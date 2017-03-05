@@ -113,4 +113,12 @@ public class Client {
     public void setMaster(String master) {
         this.master.set(master);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Client newClient = (Client) obj;
+
+        return this.getAuto().equals(newClient.getAuto())
+                && this.getWork().equals(newClient.getWork());
+    }
 }

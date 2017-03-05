@@ -14,6 +14,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Открыть XLSX" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSaveToXML" text="Сохранить в XML" />
                   <MenuItem mnemonicParsing="false" onAction="#handleLoadFromXML" text="Загрузить из XML" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleUpdateDB" text="Обновить базу" />
                   <MenuItem mnemonicParsing="false" onAction="#handleOpenSettings" text="Настройки" />
             </items>
           </Menu>

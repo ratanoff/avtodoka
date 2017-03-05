@@ -252,6 +252,77 @@ public class MainApp extends Application {
     }
 
     /**
+     * Обновление БД
+     *
+     * @param file
+     */
+    public void updateBD(File file) {
+        System.out.println("Обновление БД");
+        ObservableList<Client> newClients = FXCollections.observableArrayList();
+
+        try {
+            // Тестирование
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+            for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+
+                XSSFSheet sheet = workbook.getSheetAt(i);
+
+                System.out.println(sheet.getSheetName() + " : " + sheet.getLastRowNum());
+
+                // Добавление клиента в базу
+                for (int k = 2; k < sheet.getLastRowNum(); k++) { // 118
+                    XSSFRow row = sheet.getRow(k);
+                    XSSFCell cell = row.getCell(0);
+                    if (cell != null) {
+                        if (!cell.toString().isEmpty()) {
+                            Client newClient = new Client();
+                            newClient.setDate(row.getCell(0).toString());
+                            newClient.setAuto(row.getCell(2).toString());
+                            row.getCell(3).setCellType(CellType.STRING);
+                            newClient.setAmount(row.getCell(3).toString());
+                            newClient.setWork(row.getCell(16).toString());
+                            row.getCell(18).setCellType(CellType.STRING);
+                            newClient.setName(row.getCell(18).getStringCellValue());
+                            row.getCell(19).setCellType(CellType.STRING);
+                            newClient.setPhone(row.getCell(19).getStringCellValue());
+
+                            // Мастер
+                            StringBuilder sb = new StringBuilder();
+                            for (int j = 21; j < 26; j++) {
+                                String master = row.getCell(j).toString();
+                                if (!master.isEmpty()) {
+                                    sb.append(sheet.getRow(0).getCell(j).toString()).append(", ");
+                                }
+                            }
+
+                            if (!sb.toString().isEmpty()) {
+                                newClient.setMaster(sb.substring(0, sb.length() - 2));
+                            } else {
+                                newClient.setMaster(sb.toString());
+                            }
+                            if (!clientData.contains(newClient)) {
+                                newClients.add(newClient);
+                            }
+                        }
+                    }
+                }
+            }
+
+            clientData.addAll(newClients);
+            System.out.println("Добавлено записей = " + newClients.size());
+
+            loadTableContent();
+
+            File newFile = new File("resources/xml/db.xml");
+            saveClientsToXML(newFile);
+
+        } catch (IOException | InvalidFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Показывает детальную информацию о клиенте.
      *
      * @param client

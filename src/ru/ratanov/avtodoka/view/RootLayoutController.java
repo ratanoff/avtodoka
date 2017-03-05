@@ -88,7 +88,7 @@ public class RootLayoutController {
 
         // Задаем фильтр расширений
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
-                "XML files (*.xml)", "(*.xml)"
+                "XML files (*.xml)", "*.xml"
         );
         fileChooser.getExtensionFilters().add(extensionFilter);
 
@@ -131,6 +131,12 @@ public class RootLayoutController {
 
     }
 
-
+    @FXML
+    private void handleUpdateDB() {
+        File file = mainApp.getUpdateFilePath();
+        if (file != null) {
+            mainApp.updateBD(file);
+        }
+    }
 
 }
